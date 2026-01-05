@@ -3,137 +3,136 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>مساحات العمل + الإيميلات والباسورد</title>
+  <title>إدارة مساحات العمل والحسابات</title>
 
-  <!-- خط عربي جميل -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg1:#79d6ff;
-      --bg2:#eaf8ff;
-      --glass: rgba(255,255,255,.68);
-      --glass2: rgba(255,255,255,.52);
-      --stroke: rgba(255,255,255,.55);
-      --text: #0b1b2a;
-      --muted:#3a546b;
-      --danger:#c62828;
-      --warn:#b26a00;
-      --ok:#0a7a38;
-      --shadow: 0 16px 50px rgba(0,0,0,.14);
+      --bg1:#7fdcff;
+      --bg2:#f0fbff;
+      --ink:#071829;
+      --muted:#33526a;
+
+      --card: rgba(255,255,255,.72);
+      --card2: rgba(255,255,255,.56);
+      --stroke: rgba(255,255,255,.56);
+
+      --shadow: 0 18px 55px rgba(0,0,0,.14);
+      --shadow2: 0 10px 26px rgba(0,0,0,.10);
       --radius: 18px;
+
+      --ok:#0a7a38;
+      --warn:#b26a00;
+      --bad:#c62828;
+
+      --accent:#0a5ea8;
+      --accent2:#0c7ad6;
     }
 
-    *{ box-sizing: border-box; }
-    html,body{ height: 100%; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
       font-family: "Cairo", system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
-      color: var(--text);
+      color:var(--ink);
       background: linear-gradient(180deg, var(--bg1), var(--bg2));
-      overflow-x: hidden;
+      overflow-x:hidden;
     }
 
-    /* ===== Sky + Clouds ===== */
-    #sky{
-      position: fixed;
-      inset: 0;
-      z-index: 0;
+    /* Background: daytime sky with animated clouds (CSS only) */
+    .sky{
+      position:fixed;
+      inset:0;
+      z-index:0;
       pointer-events:none;
       overflow:hidden;
     }
     .sun{
       position:absolute;
-      top: 40px;
-      left: 70px;
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, rgba(255,255,255,.95), rgba(255,225,130,.9), rgba(255,185,60,.55));
-      filter: blur(.2px);
+      top: 42px;
+      left: 72px;
+      width: 180px;
+      height: 180px;
+      border-radius:50%;
+      background: radial-gradient(circle at 35% 35%, rgba(255,255,255,.98), rgba(255,236,170,.92), rgba(255,197,82,.55));
+      box-shadow: 0 0 110px rgba(255,220,120,.55);
       opacity:.95;
-      box-shadow: 0 0 90px rgba(255,220,120,.55);
+      filter:saturate(1.05);
     }
     .cloud{
       position:absolute;
-      width: 220px;
-      height: 62px;
-      background: rgba(255,255,255,.80);
-      border-radius: 40px;
+      width: 240px;
+      height: 66px;
+      border-radius: 44px;
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 16px 42px rgba(0,0,0,.06);
       filter: blur(.2px);
-      box-shadow: 0 14px 40px rgba(0,0,0,.06);
-      opacity: .9;
+      opacity:.9;
     }
-    .cloud::before,
-    .cloud::after{
+    .cloud::before,.cloud::after{
       content:"";
       position:absolute;
-      background: inherit;
-      border-radius: 50%;
+      background:inherit;
+      border-radius:50%;
     }
-    .cloud::before{
-      width: 88px; height: 88px;
-      top: -44px; right: 40px;
-    }
-    .cloud::after{
-      width: 62px; height: 62px;
-      top: -30px; right: 108px;
-    }
+    .cloud::before{ width: 96px; height: 96px; top:-48px; right:44px; }
+    .cloud::after{ width: 68px; height: 68px; top:-32px; right:118px; }
 
-    @keyframes drift {
-      from { transform: translateX(-260px); }
-      to { transform: translateX(calc(100vw + 260px)); }
+    @keyframes drift{
+      from { transform: translateX(-320px); }
+      to { transform: translateX(calc(100vw + 320px)); }
     }
-    .c1{ top: 80px;  right: -260px; animation: drift 42s linear infinite; opacity:.85; }
-    .c2{ top: 170px; right: -260px; animation: drift 58s linear infinite; opacity:.75; transform: translateX(-120px); }
-    .c3{ top: 270px; right: -260px; animation: drift 75s linear infinite; opacity:.70; transform: translateX(-260px); }
-    .c4{ top: 120px; right: -260px; animation: drift 95s linear infinite; opacity:.55; transform: translateX(-480px); }
+    .c1{ top: 92px;  right:-320px; animation: drift 44s linear infinite; opacity:.85; }
+    .c2{ top: 176px; right:-320px; animation: drift 62s linear infinite; opacity:.72; transform: translateX(-220px); }
+    .c3{ top: 278px; right:-320px; animation: drift 78s linear infinite; opacity:.65; transform: translateX(-520px); }
+    .c4{ top: 132px; right:-320px; animation: drift 98s linear infinite; opacity:.52; transform: translateX(-820px); }
 
     @media (prefers-reduced-motion: reduce){
-      .c1,.c2,.c3,.c4{ animation: none; }
+      .c1,.c2,.c3,.c4{ animation:none; }
     }
 
-    /* ===== App Layout ===== */
     .app{
-      position: relative;
-      z-index: 2;
+      position:relative;
+      z-index:2;
       max-width: 1180px;
       margin: 0 auto;
       padding: 26px 16px 60px;
     }
 
-    .header{
+    header{
       display:flex;
       align-items:flex-start;
-      justify-content: space-between;
-      gap: 12px;
+      justify-content:space-between;
+      gap:12px;
       margin-bottom: 14px;
     }
-    .header h1{
+    header h1{
       margin:0;
       font-size: 26px;
-      letter-spacing: .2px;
+      letter-spacing:.1px;
+      font-weight: 800;
     }
-    .sub{
+    .subtitle{
       margin: 6px 0 0;
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.7;
-      max-width: 680px;
+      line-height: 1.8;
+      max-width: 760px;
     }
 
-    .header-actions{
+    .top-actions{
       display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
 
     .tabs{
       display:flex;
-      gap: 10px;
+      gap:10px;
       margin: 14px 0 18px;
       background: rgba(255,255,255,.40);
       border: 1px solid rgba(255,255,255,.55);
@@ -149,34 +148,39 @@
       cursor:pointer;
       padding: 10px 14px;
       border-radius: 999px;
-      font-weight: 700;
+      font-weight: 800;
       color: #234258;
-      transition: transform .15s ease, background .15s ease;
+      transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
       white-space: nowrap;
     }
     .tab:hover{ transform: translateY(-1px); }
     .tab.active{
-      background: rgba(255,255,255,.85);
+      background: rgba(255,255,255,.88);
       box-shadow: 0 12px 34px rgba(0,0,0,.08);
-      color: #0b1b2a;
+      color: var(--ink);
     }
 
-    .tab-pane{ display:none; }
-    .tab-pane.active{ display:block; }
-
     .panel{
-      background: var(--glass);
+      background: var(--card);
       border: 1px solid var(--stroke);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       padding: 16px;
       margin-bottom: 14px;
     }
 
-    .panel h2{
-      margin: 0 0 12px;
+    .panel-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 10px;
+    }
+    .panel-title h2{
+      margin:0;
       font-size: 18px;
+      font-weight: 800;
     }
 
     .grid{
@@ -189,35 +193,36 @@
       font-size: 13px;
       color: #2b4b62;
       margin-bottom: 6px;
-      font-weight: 700;
+      font-weight: 800;
     }
-    input, select{
-      width: 100%;
+    input, select, textarea{
+      width:100%;
       padding: 12px 12px;
       border-radius: 14px;
       border: 1px solid rgba(20,40,60,.18);
-      background: rgba(255,255,255,.88);
-      outline: none;
+      background: rgba(255,255,255,.90);
+      outline:none;
       font-family: inherit;
       transition: box-shadow .15s ease, transform .15s ease, border-color .15s ease;
     }
-    input:focus, select:focus{
-      border-color: rgba(60,130,180,.55);
-      box-shadow: 0 0 0 4px rgba(80,160,210,.18);
+    textarea{ min-height: 44px; resize: vertical; }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(12,122,214,.55);
+      box-shadow: 0 0 0 4px rgba(12,122,214,.18);
     }
     .full{ grid-column: 1 / -1; }
 
     .row{
       display:flex;
       align-items:center;
-      gap: 10px;
-      flex-wrap: wrap;
+      gap:10px;
+      flex-wrap:wrap;
       margin-top: 12px;
     }
-    .between{ justify-content: space-between; }
+    .between{ justify-content:space-between; }
 
     .btn{
-      appearance: none;
+      appearance:none;
       border: 1px solid rgba(0,0,0,.10);
       background: rgba(255,255,255,.88);
       padding: 10px 12px;
@@ -225,8 +230,11 @@
       cursor:pointer;
       font-family: inherit;
       font-weight: 800;
-      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-      user-select: none;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
     }
     .btn:hover{
       transform: translateY(-1px);
@@ -234,57 +242,107 @@
       background: rgba(255,255,255,.95);
     }
     .btn.primary{
-      background: rgba(16,120,70,.92);
       color: #fff;
-      border-color: rgba(16,120,70,.2);
+      border-color: rgba(12,122,214,.25);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
     }
-    .btn.primary:hover{ background: rgba(14,110,64,.98); }
+    .btn.primary:hover{ filter: brightness(1.02); }
+    .btn.danger{
+      background: rgba(198,40,40,.10);
+      border-color: rgba(198,40,40,.25);
+      color: var(--bad);
+    }
     .btn.ghost{
       background: rgba(255,255,255,.45);
       border-color: rgba(255,255,255,.55);
     }
 
+    .icon{
+      width: 18px;
+      height: 18px;
+      display:inline-block;
+    }
+    .icon svg{ width:100%; height:100%; display:block; }
+
     .muted{
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.7;
+      line-height: 1.8;
       margin: 0;
     }
 
+    .filters{
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      margin-top: 0;
+    }
     .search{
-      min-width: 220px;
-      background: rgba(255,255,255,.82);
+      min-width: 240px;
+      background: rgba(255,255,255,.84);
     }
     .select{
       min-width: 220px;
-      background: rgba(255,255,255,.82);
+      background: rgba(255,255,255,.84);
+    }
+
+    .stats{
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .stat{
+      flex: 1 1 160px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 16px;
+      padding: 10px 12px;
+      box-shadow: var(--shadow2);
+    }
+    .stat .k{
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 800;
+      margin: 0 0 2px;
+    }
+    .stat .v{
+      font-size: 18px;
+      font-weight: 900;
+      margin: 0;
     }
 
     .cards{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 12px;
       margin-top: 12px;
     }
+
     .card{
-      background: rgba(255,255,255,.78);
+      background: rgba(255,255,255,.80);
       border: 1px solid rgba(0,0,0,.08);
       border-radius: 18px;
       padding: 14px;
-      box-shadow: 0 14px 34px rgba(0,0,0,.08);
+      box-shadow: 0 16px 40px rgba(0,0,0,.10);
       transition: transform .18s ease;
+      position:relative;
+      overflow:hidden;
     }
     .card:hover{ transform: translateY(-2px); }
+
     .card-top{
       display:flex;
       align-items:flex-start;
-      justify-content: space-between;
-      gap: 10px;
+      justify-content:space-between;
+      gap:12px;
     }
     .title{
       font-weight: 900;
       font-size: 16px;
       margin:0;
+      letter-spacing: .1px;
     }
     .badge{
       font-size: 12px;
@@ -292,12 +350,12 @@
       padding: 6px 10px;
       border-radius: 999px;
       border: 1px solid rgba(0,0,0,.08);
-      background: rgba(255,255,255,.75);
+      background: rgba(255,255,255,.78);
       white-space: nowrap;
     }
     .badge.ok{ color: var(--ok); }
     .badge.warn{ color: var(--warn); }
-    .badge.danger{ color: var(--danger); }
+    .badge.bad{ color: var(--bad); }
 
     .meta{
       margin-top: 10px;
@@ -309,23 +367,10 @@
     }
     .meta a{
       color: #0b4a7c;
-      text-decoration: none;
-      font-weight: 800;
-    }
-    .meta a:hover{ text-decoration: underline; }
-
-    .actions{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-    .actions .btn{
-      padding: 8px 10px;
-      border-radius: 12px;
+      text-decoration:none;
       font-weight: 900;
-      font-size: 13px;
     }
+    .meta a:hover{ text-decoration:underline; }
 
     .progress{
       height: 10px;
@@ -335,29 +380,55 @@
       margin-top: 10px;
     }
     .bar{
-      height: 100%;
+      height:100%;
       width: 0%;
       border-radius: 999px;
-      background: rgba(16,120,70,.85);
+      background: rgba(10,122,56,.86);
       transition: width .3s ease;
     }
-    .bar.warn{ background: rgba(178,106,0,.85); }
-    .bar.danger{ background: rgba(198,40,40,.85); }
+    .bar.warn{ background: rgba(178,106,0,.86); }
+    .bar.bad{ background: rgba(198,40,40,.86); }
 
-    .pass{
+    .card-actions{
       display:flex;
+      flex-wrap: wrap;
       gap: 8px;
-      align-items:center;
+      margin-top: 12px;
     }
-    .pass input{ flex: 1; }
-    .icon{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      border: 1px solid rgba(0,0,0,.10);
-      background: rgba(255,255,255,.90);
-      cursor:pointer;
+    .card-actions .btn{
+      padding: 8px 10px;
+      border-radius: 12px;
       font-weight: 900;
+      font-size: 13px;
+      gap: 8px;
+    }
+
+    .pw-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.08);
+      background: rgba(255,255,255,.60);
+      margin-top: 10px;
+    }
+    .pw-row .pw-label{
+      font-weight: 900;
+      font-size: 13px;
+      color: #1a3346;
+      margin:0;
+    }
+    .pw-row .pw-value{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      color: #15334a;
+      direction:ltr;
+      text-align:left;
+      margin:0;
+      opacity:.9;
+      user-select: text;
     }
 
     .empty{
@@ -377,75 +448,61 @@
       display:flex;
       flex-direction: column;
       gap: 10px;
-      max-width: min(420px, calc(100vw - 36px));
+      max-width: min(460px, calc(100vw - 36px));
       pointer-events: none;
     }
     .toast{
       pointer-events: auto;
-      background: rgba(255,255,255,.88);
+      background: rgba(255,255,255,.92);
       border: 1px solid rgba(0,0,0,.10);
       border-radius: 16px;
       padding: 12px 12px;
-      box-shadow: 0 16px 50px rgba(0,0,0,.16);
+      box-shadow: 0 18px 55px rgba(0,0,0,.18);
       backdrop-filter: blur(10px);
       display:flex;
       gap: 10px;
       align-items:flex-start;
       animation: pop .18s ease;
+      position:relative;
+      overflow:hidden;
     }
+    .toast::before{
+      content:"";
+      position:absolute;
+      top:0; bottom:0;
+      right:0;
+      width: 5px;
+      background: var(--accent2);
+      opacity: .9;
+    }
+    .toast.warn::before{ background: var(--warn); }
+    .toast.bad::before{ background: var(--bad); }
+    .toast.ok::before{ background: var(--ok); }
     @keyframes pop{
       from{ transform: translateY(8px); opacity: 0; }
       to{ transform: translateY(0); opacity: 1; }
     }
-    .toast .t-emoji{ font-size: 18px; }
-    .toast .t-text{ font-size: 13px; color:#173247; line-height: 1.7; }
-    .toast .t-text b{ font-weight: 900; }
-
-    /* Overlays / Modals */
-    .overlay{
-      position: fixed;
-      inset: 0;
-      background: rgba(5,10,18,.30);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 16px;
-      z-index: 120;
-      backdrop-filter: blur(6px);
-    }
-    .overlay-card{
-      width: min(520px, 100%);
-      background: rgba(255,255,255,.92);
-      border: 1px solid rgba(255,255,255,.55);
-      border-radius: 20px;
-      box-shadow: 0 22px 70px rgba(0,0,0,.22);
-      padding: 16px;
-    }
-    .overlay-card h3{ margin: 0 0 8px; }
-    .overlay-card form{
-      display:flex;
-      gap: 10px;
-      flex-direction: column;
-      margin-top: 10px;
-    }
-    .error{
-      color: var(--danger);
-      font-weight: 900;
-      margin-top: 10px;
+    .toast .t-text{
       font-size: 13px;
+      color:#173247;
+      line-height: 1.8;
+      font-weight: 700;
     }
+
+    .hidden{ display:none !important; }
 
     @media (max-width: 900px){
       .grid{ grid-template-columns: 1fr; }
       .search, .select{ min-width: 0; width: 100%; }
-      .header{ flex-direction: column; }
-      .header-actions{ justify-content: flex-start; }
+      header{ flex-direction: column; }
+      .top-actions{ justify-content: flex-start; }
+      .filters{ justify-content: flex-start; width: 100%; }
     }
   </style>
 </head>
 
 <body>
-  <div id="sky" aria-hidden="true">
+  <div class="sky" aria-hidden="true">
     <div class="sun"></div>
     <div class="cloud c1"></div>
     <div class="cloud c2"></div>
@@ -454,152 +511,192 @@
   </div>
 
   <div class="app">
-    <div class="header">
+    <header>
       <div>
-        <h1>إدارة مساحات العمل + الإيميلات والباسورد</h1>
-        <p class="sub">
-          ✅ مدة كل مساحة = <b>30 يوم</b> من تاريخ البداية<br>
-          🔔 تنبيه داخل الموقع <b>قبل الانتهاء بيوم واحد</b><br>
-          🔒 تقدر تقفل البيانات (تشفير) بكلمة مرور رئيسية
+        <h1>لوحة إدارة مساحات العمل والحسابات</h1>
+        <p class="subtitle">
+          مدة كل مساحة 30 يوم من تاريخ البداية. يتم حساب تاريخ الانتهاء تلقائيا وعرض عدد الأيام المتبقية مع تنبيه قبل يوم واحد من الانتهاء. كل البيانات تحفظ محليا داخل المتصفح بسرعة.
         </p>
       </div>
 
-      <div class="header-actions">
-        <button id="btnLock" class="btn ghost" title="قفل/فك قفل البيانات">🔒 قفل</button>
-        <button id="btnExport" class="btn ghost" title="تصدير نسخة احتياطية">⬇️ تصدير</button>
-        <label for="importFile" class="btn ghost" title="استيراد نسخة احتياطية">⬆️ استيراد</label>
-        <input id="importFile" type="file" accept="application/json" hidden>
-      </div>
-    </div>
+      <div class="top-actions">
+        <button id="btnExport" class="btn ghost" type="button">
+          <span class="icon" aria-hidden="true" id="icExport"></span>
+          <span>تصدير</span>
+        </button>
 
-    <div class="tabs">
-      <button class="tab active" data-tab="workspaces">مساحات العمل</button>
-      <button class="tab" data-tab="vault">إيميلات وباسورد</button>
-    </div>
+        <label class="btn ghost" for="importFile">
+          <span class="icon" aria-hidden="true" id="icImport"></span>
+          <span>استيراد</span>
+        </label>
+        <input id="importFile" type="file" accept="application/json" hidden>
+
+        <button id="btnReset" class="btn danger" type="button">
+          <span class="icon" aria-hidden="true" id="icReset"></span>
+          <span>مسح البيانات</span>
+        </button>
+      </div>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="التنقل">
+      <button class="tab active" data-tab="workspaces" role="tab" aria-selected="true">مساحات العمل</button>
+      <button class="tab" data-tab="vault" role="tab" aria-selected="false">الحسابات</button>
+    </nav>
 
     <main>
       <!-- Workspaces -->
-      <section id="tab-workspaces" class="tab-pane active">
+      <section id="tab-workspaces">
         <div class="panel">
-          <h2>إضافة / تعديل مساحة عمل</h2>
+          <div class="panel-title">
+            <h2>إضافة أو تعديل مساحة</h2>
+            <p class="muted">التاريخ النهائي يحسب تلقائيا لمدة 30 يوم.</p>
+          </div>
 
           <form id="wsForm" autocomplete="off">
             <div class="grid">
               <div class="field">
-                <label>أسم المساحة</label>
-                <input id="wsName" required placeholder="مثلاً: Workspace 1">
+                <label for="wsName">اسم المساحة</label>
+                <input id="wsName" required placeholder="مثال: مساحة فريق التسويق">
               </div>
 
               <div class="field">
-                <label>رابط المساحة</label>
-                <input id="wsUrl" type="url" required placeholder="https://...">
+                <label for="wsUrl">رابط المساحة</label>
+                <input id="wsUrl" type="url" required placeholder="https://">
               </div>
 
               <div class="field">
-                <label>رابط الإيميل (تسجيل الدخول) (اختياري)</label>
-                <input id="wsEmailUrl" type="url" placeholder="https://mail.google.com/">
+                <label for="wsEmailUrl">رابط تسجيل دخول الايميل (اختياري)</label>
+                <input id="wsEmailUrl" type="url" placeholder="https://">
               </div>
 
               <div class="field">
-                <label>الإيميل</label>
+                <label for="wsEmail">الايميل</label>
                 <input id="wsEmail" type="email" required placeholder="name@example.com">
               </div>
 
               <div class="field">
-                <label>تاريخ البداية (يحسب 30 يوم)</label>
+                <label for="wsStart">تاريخ البداية</label>
                 <input id="wsStart" type="date" required>
               </div>
 
               <div class="field">
-                <label>تاريخ الانتهاء (بعد 30 يوم)</label>
+                <label for="wsEnd">تاريخ الانتهاء</label>
                 <input id="wsEnd" type="date" readonly>
+              </div>
+
+              <div class="field full">
+                <label for="wsNote">ملاحظة (اختياري)</label>
+                <textarea id="wsNote" placeholder="معلومات اضافية عن هذه المساحة"></textarea>
               </div>
             </div>
 
             <div class="row">
-              <button type="submit" id="wsSubmit" class="btn primary">➕ إضافة</button>
-              <button type="button" id="wsCancel" class="btn" hidden>إلغاء التعديل</button>
+              <button type="submit" id="wsSubmit" class="btn primary">
+                <span class="icon" aria-hidden="true" id="icAdd"></span>
+                <span>إضافة</span>
+              </button>
+              <button type="button" id="wsCancel" class="btn hidden">
+                <span class="icon" aria-hidden="true" id="icCancel"></span>
+                <span>إلغاء</span>
+              </button>
             </div>
           </form>
+
+          <div class="stats" aria-label="إحصائيات">
+            <div class="stat"><p class="k">الإجمالي</p><p class="v" id="stTotal">0</p></div>
+            <div class="stat"><p class="k">نشطة</p><p class="v" id="stActive">0</p></div>
+            <div class="stat"><p class="k">قريبة الانتهاء</p><p class="v" id="stSoon">0</p></div>
+            <div class="stat"><p class="k">منتهية</p><p class="v" id="stExpired">0</p></div>
+          </div>
         </div>
 
         <div class="panel">
-          <div class="row between">
+          <div class="panel-title">
             <h2>قائمة المساحات</h2>
-            <div class="row" style="margin-top:0;">
-              <input id="wsSearch" class="search" placeholder="بحث بالاسم/الإيميل...">
+            <div class="filters">
+              <input id="wsSearch" class="search" placeholder="بحث بالاسم أو الايميل">
               <select id="wsFilter" class="select" title="فلترة">
                 <option value="all">الكل</option>
-                <option value="soon">ينتهي قريباً (≤ 3 أيام)</option>
+                <option value="soon">قريبة الانتهاء (3 أيام أو أقل)</option>
                 <option value="active">نشطة</option>
                 <option value="expired">منتهية</option>
+              </select>
+              <select id="wsSort" class="select" title="ترتيب">
+                <option value="soonest">الأقرب انتهاء</option>
+                <option value="name">حسب الاسم</option>
+                <option value="newest">الأحدث</option>
               </select>
             </div>
           </div>
 
           <div id="wsList" class="cards"></div>
-          <p id="wsEmpty" class="muted empty" hidden>لا توجد مساحات بعد. أضف أول مساحة من الأعلى.</p>
+          <p id="wsEmpty" class="muted empty hidden">لا توجد مساحات حاليا. أضف أول مساحة من الأعلى.</p>
         </div>
       </section>
 
       <!-- Vault -->
-      <section id="tab-vault" class="tab-pane">
+      <section id="tab-vault" class="hidden">
         <div class="panel">
-          <h2>إضافة / تعديل إيميل وباسورد</h2>
+          <div class="panel-title">
+            <h2>إضافة أو تعديل حساب</h2>
+            <p class="muted">يمكنك نسخ الايميل وكلمات المرور بنقرة واحدة.</p>
+          </div>
 
           <form id="vaultForm" autocomplete="off">
             <div class="grid">
               <div class="field">
-                <label>اسم الخدمة</label>
-                <input id="vService" required placeholder="مثلاً: ChatGPT سنوي">
+                <label for="vService">اسم الخدمة</label>
+                <input id="vService" required placeholder="مثال: ChatGPT سنوي">
               </div>
 
               <div class="field">
-                <label>الإيميل</label>
-                <input id="vEmail" required placeholder="مثلاً: my@email.com">
+                <label for="vEmail">الايميل</label>
+                <input id="vEmail" required placeholder="name@example.com">
               </div>
 
               <div class="field">
-                <label>كلمة سر الإيميل</label>
-                <div class="pass">
-                  <input id="vPassEmail" type="password" required placeholder="••••••••">
-                  <button type="button" class="icon" data-toggle="#vPassEmail" title="إظهار/إخفاء">👁️</button>
-                  <button type="button" class="icon" data-copy="#vPassEmail" title="نسخ">📋</button>
-                </div>
+                <label for="vPassEmail">كلمة سر الايميل</label>
+                <input id="vPassEmail" type="password" required placeholder="كلمة السر">
               </div>
 
               <div class="field">
-                <label>كلمة سر الخدمة (ChatGPT / Gemini)</label>
-                <div class="pass">
-                  <input id="vPassService" type="password" required placeholder="••••••••">
-                  <button type="button" class="icon" data-toggle="#vPassService" title="إظهار/إخفاء">👁️</button>
-                  <button type="button" class="icon" data-copy="#vPassService" title="نسخ">📋</button>
-                </div>
+                <label for="vPassService">كلمة سر الخدمة</label>
+                <input id="vPassService" type="password" required placeholder="كلمة السر">
               </div>
 
               <div class="field full">
-                <label>ملاحظة (اختياري)</label>
-                <input id="vNote" placeholder="مثلاً: اشتراك سنوي - التجديد شهر 12">
+                <label for="vNote">ملاحظة (اختياري)</label>
+                <textarea id="vNote" placeholder="مثال: اشتراك سنوي أو تاريخ التجديد"></textarea>
               </div>
             </div>
 
             <div class="row">
-              <button type="submit" id="vaultSubmit" class="btn primary">➕ إضافة</button>
-              <button type="button" id="vaultCancel" class="btn" hidden>إلغاء التعديل</button>
+              <button type="submit" id="vaultSubmit" class="btn primary">
+                <span class="icon" aria-hidden="true" id="icAdd2"></span>
+                <span>إضافة</span>
+              </button>
+              <button type="button" id="vaultCancel" class="btn hidden">
+                <span class="icon" aria-hidden="true" id="icCancel2"></span>
+                <span>إلغاء</span>
+              </button>
             </div>
           </form>
         </div>
 
         <div class="panel">
-          <div class="row between">
-            <h2>القائمة</h2>
-            <div class="row" style="margin-top:0;">
-              <input id="vSearch" class="search" placeholder="بحث بالاسم/الإيميل...">
+          <div class="panel-title">
+            <h2>قائمة الحسابات</h2>
+            <div class="filters">
+              <input id="vSearch" class="search" placeholder="بحث بالاسم أو الايميل">
+              <select id="vSort" class="select" title="ترتيب">
+                <option value="name">حسب الاسم</option>
+                <option value="newest">الأحدث</option>
+              </select>
             </div>
           </div>
 
           <div id="vaultList" class="cards"></div>
-          <p id="vaultEmpty" class="muted empty" hidden>لا توجد بيانات بعد. أضف أول حساب من الأعلى.</p>
+          <p id="vaultEmpty" class="muted empty hidden">لا توجد حسابات حاليا. أضف أول حساب من الأعلى.</p>
         </div>
       </section>
     </main>
@@ -607,57 +704,58 @@
 
   <div id="toastHost" class="toast-host" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- Locked Overlay -->
-  <div id="lockOverlay" class="overlay" hidden>
-    <div class="overlay-card">
-      <h3>🔐 البيانات مقفولة</h3>
-      <p class="muted">أدخل كلمة المرور الرئيسية لفتح البيانات.</p>
-      <form id="unlockForm">
-        <input id="unlockPassword" type="password" placeholder="كلمة المرور الرئيسية" required>
-        <button class="btn primary" type="submit">فتح</button>
-      </form>
-      <p id="unlockError" class="error" hidden>كلمة المرور غير صحيحة أو البيانات تالفة.</p>
-    </div>
-  </div>
-
-  <!-- Set Master Password Modal -->
-  <div id="modal" class="overlay" hidden>
-    <div class="overlay-card">
-      <h3 id="modalTitle">🔒 قفل البيانات</h3>
-      <p id="modalText" class="muted">اختر كلمة مرور رئيسية (لا تنسها).</p>
-
-      <form id="modalForm">
-        <input id="mp1" type="password" minlength="8" required placeholder="كلمة المرور الرئيسية (8 أحرف أو أكثر)">
-        <input id="mp2" type="password" minlength="8" required placeholder="تأكيد كلمة المرور">
-        <div class="row">
-          <button class="btn primary" type="submit">تأكيد</button>
-          <button class="btn" type="button" id="modalCancel">إلغاء</button>
-        </div>
-      </form>
-
-      <p id="modalError" class="error" hidden>تأكد من تطابق كلمة المرور.</p>
-    </div>
-  </div>
-
   <script>
     "use strict";
 
-    const STORAGE_KEY = "WS_VAULT_STORE_V1";
+    const STORAGE_KEY = "WORKSPACE_VAULT_V2";
     const MS_DAY = 24 * 60 * 60 * 1000;
 
     const $ = (sel, root=document) => root.querySelector(sel);
     const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
+    // Inline SVG icons (no emoji)
+    const ICONS = {
+      export: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg>`,
+      import: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9"></path><path d="M17 14l-5-5-5 5"></path><path d="M5 3h14"></path></svg>`,
+      reset: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M7 6l1 16h8l1-16"></path></svg>`,
+      add: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>`,
+      cancel: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"></path><path d="M6 6l12 12"></path></svg>`,
+      open: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v7H3V3h7"></path></svg>`,
+      copy: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`,
+      edit: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path></svg>`,
+      del: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M7 6l1 16h8l1-16"></path></svg>`,
+      renew: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v7h-7"></path></svg>`,
+      show: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>`,
+      hide: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.77 21.77 0 0 1 5.06-6.88"></path><path d="M1 1l22 22"></path><path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.82 21.82 0 0 1-4.1 5.94"></path><path d="M14.12 14.12a3 3 0 0 1-4.24-4.24"></path></svg>`
+    };
+
+    // Place icons
+    $("#icExport").innerHTML = ICONS.export;
+    $("#icImport").innerHTML = ICONS.import;
+    $("#icReset").innerHTML = ICONS.reset;
+    $("#icAdd").innerHTML = ICONS.add;
+    $("#icCancel").innerHTML = ICONS.cancel;
+    $("#icAdd2").innerHTML = ICONS.add;
+    $("#icCancel2").innerHTML = ICONS.cancel;
+
     const ui = {
       tabs: $$(".tab"),
-      paneWorkspaces: $("#tab-workspaces"),
-      paneVault: $("#tab-vault"),
+      tabWorkspaces: $("#tab-workspaces"),
+      tabVault: $("#tab-vault"),
 
-      btnLock: $("#btnLock"),
       btnExport: $("#btnExport"),
       importFile: $("#importFile"),
+      btnReset: $("#btnReset"),
 
-      // Workspace form
+      toastHost: $("#toastHost"),
+
+      // stats
+      stTotal: $("#stTotal"),
+      stActive: $("#stActive"),
+      stSoon: $("#stSoon"),
+      stExpired: $("#stExpired"),
+
+      // workspaces
       wsForm: $("#wsForm"),
       wsName: $("#wsName"),
       wsUrl: $("#wsUrl"),
@@ -665,14 +763,16 @@
       wsEmail: $("#wsEmail"),
       wsStart: $("#wsStart"),
       wsEnd: $("#wsEnd"),
+      wsNote: $("#wsNote"),
       wsSubmit: $("#wsSubmit"),
       wsCancel: $("#wsCancel"),
       wsSearch: $("#wsSearch"),
       wsFilter: $("#wsFilter"),
+      wsSort: $("#wsSort"),
       wsList: $("#wsList"),
       wsEmpty: $("#wsEmpty"),
 
-      // Vault form
+      // vault
       vaultForm: $("#vaultForm"),
       vService: $("#vService"),
       vEmail: $("#vEmail"),
@@ -682,24 +782,9 @@
       vaultSubmit: $("#vaultSubmit"),
       vaultCancel: $("#vaultCancel"),
       vSearch: $("#vSearch"),
+      vSort: $("#vSort"),
       vaultList: $("#vaultList"),
       vaultEmpty: $("#vaultEmpty"),
-
-      toastHost: $("#toastHost"),
-
-      lockOverlay: $("#lockOverlay"),
-      unlockForm: $("#unlockForm"),
-      unlockPassword: $("#unlockPassword"),
-      unlockError: $("#unlockError"),
-
-      modal: $("#modal"),
-      modalForm: $("#modalForm"),
-      modalCancel: $("#modalCancel"),
-      modalTitle: $("#modalTitle"),
-      modalText: $("#modalText"),
-      modalError: $("#modalError"),
-      mp1: $("#mp1"),
-      mp2: $("#mp2"),
     };
 
     function toLocalISO(d){
@@ -709,28 +794,44 @@
       return `${y}-${m}-${day}`;
     }
     function parseISO(iso){
-      // iso: YYYY-MM-DD (local midnight)
       return new Date(iso + "T00:00:00");
     }
     function formatDateAr(iso){
       const d = parseISO(iso);
       return d.toLocaleDateString("ar", { year:"numeric", month:"long", day:"numeric" });
     }
+    function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
     function uid(prefix="id"){
       if (crypto && crypto.randomUUID) return `${prefix}_${crypto.randomUUID()}`;
       return `${prefix}_${Date.now()}_${Math.random().toString(16).slice(2)}`;
     }
 
-    function toast(message, emoji="✨"){
+    function computeExpiry(startISO){
+      const start = parseISO(startISO);
+      const end = new Date(start.getTime() + 30 * MS_DAY);
+      return toLocalISO(end);
+    }
+    function daysLeftFromEnd(endISO){
+      const today = parseISO(toLocalISO(new Date()));
+      const end = parseISO(endISO);
+      const diff = (end.getTime() - today.getTime()) / MS_DAY;
+      return Math.ceil(diff);
+    }
+
+    function toast(message, type="ok"){
       const node = document.createElement("div");
-      node.className = "toast";
-      node.innerHTML = `<div class="t-emoji">${emoji}</div><div class="t-text">${message}</div>`;
+      node.className = `toast ${type}`;
+      const text = document.createElement("div");
+      text.className = "t-text";
+      text.textContent = message;
+      node.appendChild(text);
       ui.toastHost.appendChild(node);
+
       setTimeout(() => {
         node.style.opacity = "0";
         node.style.transform = "translateY(8px)";
         setTimeout(() => node.remove(), 250);
-      }, 4200);
+      }, 3600);
     }
 
     async function copyText(text){
@@ -740,7 +841,6 @@
           return true;
         }
       }catch(_){}
-      // fallback
       try{
         const ta = document.createElement("textarea");
         ta.value = text;
@@ -757,205 +857,147 @@
       }
     }
 
-    function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
-
-    function computeExpiry(startISO){
-      const start = parseISO(startISO);
-      const end = new Date(start.getTime() + 30 * MS_DAY);
-      return toLocalISO(end);
-    }
-    function daysLeftFromEnd(endISO){
-      const today = parseISO(toLocalISO(new Date()));
-      const end = parseISO(endISO);
-      const diff = (end.getTime() - today.getTime()) / MS_DAY;
-      return Math.ceil(diff);
-    }
-
     function defaultState(){
       return {
         workspaces: [],
         vault: [],
-        alerts: {}, // { workspaceId: "YYYY-MM-DD" last shown }
+        alerts: {},
         ui: { activeTab: "workspaces" }
       };
     }
 
-    // ===== Encryption (Optional) =====
-    const encryption = {
-      enabled: false,
-      key: null,
-      saltB64: null
-    };
-    let lockedBlob = null; // {mode:'enc', salt, iv, cipher}
-
-    function bufToB64(buf){
-      const bytes = new Uint8Array(buf);
-      let bin = "";
-      for (const b of bytes) bin += String.fromCharCode(b);
-      return btoa(bin);
-    }
-    function b64ToBuf(b64){
-      const bin = atob(b64);
-      const bytes = new Uint8Array(bin.length);
-      for (let i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
-      return bytes.buffer;
-    }
-
-    async function deriveKey(password, saltB64){
-      const enc = new TextEncoder();
-      const salt = saltB64
-        ? new Uint8Array(b64ToBuf(saltB64))
-        : crypto.getRandomValues(new Uint8Array(16));
-
-      const baseKey = await crypto.subtle.importKey(
-        "raw",
-        enc.encode(password),
-        "PBKDF2",
-        false,
-        ["deriveKey"]
-      );
-
-      const key = await crypto.subtle.deriveKey(
-        { name: "PBKDF2", salt, iterations: 150000, hash: "SHA-256" },
-        baseKey,
-        { name: "AES-GCM", length: 256 },
-        false,
-        ["encrypt", "decrypt"]
-      );
-
-      return { key, saltB64: bufToB64(salt.buffer) };
-    }
-
-    async function encryptJson(key, data){
-      const iv = crypto.getRandomValues(new Uint8Array(12));
-      const enc = new TextEncoder();
-      const plain = enc.encode(JSON.stringify(data));
-      const cipherBuf = await crypto.subtle.encrypt({ name:"AES-GCM", iv }, key, plain);
-      return { ivB64: bufToB64(iv.buffer), cipherB64: bufToB64(cipherBuf) };
-    }
-
-    async function decryptJson(key, ivB64, cipherB64){
-      const iv = new Uint8Array(b64ToBuf(ivB64));
-      const cipherBuf = b64ToBuf(cipherB64);
-      const plainBuf = await crypto.subtle.decrypt({ name:"AES-GCM", iv }, key, cipherBuf);
-      const dec = new TextDecoder();
-      return JSON.parse(dec.decode(plainBuf));
-    }
-
-    // ===== Persistence =====
     let state = defaultState();
-    let saving = false;
-    let pendingSave = false;
+    let savingHandle = null;
 
-    function mergeDefaults(data){
-      const def = defaultState();
-      if (!data || typeof data !== "object") return def;
-      return {
-        workspaces: Array.isArray(data.workspaces) ? data.workspaces : [],
-        vault: Array.isArray(data.vault) ? data.vault : [],
-        alerts: data.alerts && typeof data.alerts === "object" ? data.alerts : {},
-        ui: { activeTab: data.ui && data.ui.activeTab === "vault" ? "vault" : "workspaces" }
-      };
-    }
-
-    function loadRaw(){
+    function loadStore(){
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
       try{ return JSON.parse(raw); }catch(_){ return null; }
     }
 
-    async function persist(){
-      if (saving){ pendingSave = true; return; }
-      saving = true;
-
+    function saveNow(){
       try{
-        const payload = { v: 1, updatedAt: Date.now() };
-
-        if (encryption.enabled){
-          const { ivB64, cipherB64 } = await encryptJson(encryption.key, state);
-          payload.mode = "enc";
-          payload.salt = encryption.saltB64;
-          payload.iv = ivB64;
-          payload.cipher = cipherB64;
-        }else{
-          payload.mode = "plain";
-          payload.data = state;
-        }
-
+        const payload = { v: 2, updatedAt: Date.now(), data: state };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
       }catch(e){
         console.error(e);
-        toast("صار خطأ بالحفظ. جرّب تحديث الصفحة.", "⚠️");
-      }finally{
-        saving = false;
-        if (pendingSave){
-          pendingSave = false;
-          persist();
-        }
+        toast("حدث خطأ أثناء الحفظ", "bad");
       }
     }
 
-    // ===== UI helpers =====
-    let editingWsId = null;
-    let editingVaultId = null;
+    function scheduleSave(){
+      if (savingHandle) return;
+      const run = () => { savingHandle = null; saveNow(); };
+      if ("requestIdleCallback" in window){
+        savingHandle = requestIdleCallback(run, { timeout: 500 });
+      }else{
+        savingHandle = setTimeout(run, 0);
+      }
+    }
 
     function setTab(name){
       state.ui.activeTab = name;
-      ui.tabs.forEach(t => t.classList.toggle("active", t.dataset.tab === name));
-      ui.paneWorkspaces.classList.toggle("active", name === "workspaces");
-      ui.paneVault.classList.toggle("active", name === "vault");
-      persist();
+      ui.tabs.forEach(t => {
+        const on = t.dataset.tab === name;
+        t.classList.toggle("active", on);
+        t.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      ui.tabWorkspaces.classList.toggle("hidden", name !== "workspaces");
+      ui.tabVault.classList.toggle("hidden", name !== "vault");
+      scheduleSave();
     }
 
-    function updateLockButton(){
-      if (encryption.enabled){
-        ui.btnLock.textContent = "🔓 فك القفل";
-        ui.btnLock.title = "إلغاء التشفير (يحفظ بدون قفل)";
-      }else{
-        ui.btnLock.textContent = "🔒 قفل";
-        ui.btnLock.title = "تشفير البيانات بكلمة مرور رئيسية";
-      }
-    }
+    // Editing state
+    let editingWsId = null;
+    let editingVaultId = null;
 
     function badgeForDays(daysLeft){
-      if (daysLeft <= 0) return { cls:"danger", text:"منتهية" };
-      if (daysLeft === 1) return { cls:"warn", text:"تنتهي غداً" };
-      if (daysLeft <= 3) return { cls:"warn", text:`قريبة (${daysLeft} أيام)` };
-      return { cls:"ok", text:`باقي ${daysLeft} يوم` };
+      if (daysLeft <= 0) return { cls:"bad", text:"منتهية" };
+      if (daysLeft === 1) return { cls:"warn", text:"تنتهي غدا" };
+      if (daysLeft <= 3) return { cls:"warn", text:`قريبة (${daysLeft})` };
+      return { cls:"ok", text:`متبقي ${daysLeft}` };
     }
 
     function progressForDays(daysLeft){
-      // 30 days total
       const pct = clamp((daysLeft / 30) * 100, 0, 100);
       let cls = "";
-      if (daysLeft <= 0) cls = "danger";
+      if (daysLeft <= 0) cls = "bad";
       else if (daysLeft <= 3) cls = "warn";
       return { pct, cls };
     }
 
+    function renderStats(){
+      const derived = state.workspaces.map(ws => {
+        const endISO = computeExpiry(ws.startISO);
+        const daysLeft = daysLeftFromEnd(endISO);
+        return { ...ws, endISO, daysLeft };
+      });
+
+      const total = derived.length;
+      const active = derived.filter(x => x.daysLeft > 0).length;
+      const soon = derived.filter(x => x.daysLeft > 0 && x.daysLeft <= 3).length;
+      const expired = derived.filter(x => x.daysLeft <= 0).length;
+
+      ui.stTotal.textContent = String(total);
+      ui.stActive.textContent = String(active);
+      ui.stSoon.textContent = String(soon);
+      ui.stExpired.textContent = String(expired);
+    }
+
+    function makeBtn(label, iconSvg, cls="btn", onClick=null){
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = cls;
+      if (iconSvg){
+        const ic = document.createElement("span");
+        ic.className = "icon";
+        ic.setAttribute("aria-hidden", "true");
+        ic.innerHTML = iconSvg;
+        b.appendChild(ic);
+      }
+      const sp = document.createElement("span");
+      sp.textContent = label;
+      b.appendChild(sp);
+      if (onClick) b.addEventListener("click", onClick);
+      return b;
+    }
+
     function renderWorkspaces(){
+      renderStats();
+
       const term = (ui.wsSearch.value || "").trim().toLowerCase();
       const filter = ui.wsFilter.value;
+      const sort = ui.wsSort.value;
 
-      const items = state.workspaces
+      let items = state.workspaces
         .map(ws => {
           const endISO = computeExpiry(ws.startISO);
           const daysLeft = daysLeftFromEnd(endISO);
           return { ...ws, endISO, daysLeft };
         })
         .filter(ws => {
-          const hay = `${ws.name} ${ws.email}`.toLowerCase();
+          const hay = `${ws.name} ${ws.email} ${ws.note || ""}`.toLowerCase();
           if (term && !hay.includes(term)) return false;
 
           if (filter === "soon") return ws.daysLeft > 0 && ws.daysLeft <= 3;
           if (filter === "active") return ws.daysLeft > 0;
           if (filter === "expired") return ws.daysLeft <= 0;
           return true;
-        })
-        .sort((a,b) => (a.daysLeft - b.daysLeft) || a.name.localeCompare(b.name, "ar"));
+        });
+
+      if (sort === "name"){
+        items.sort((a,b) => a.name.localeCompare(b.name, "ar"));
+      }else if (sort === "newest"){
+        items.sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0));
+      }else{
+        // soonest
+        items.sort((a,b) => (a.daysLeft - b.daysLeft) || (b.createdAt||0)-(a.createdAt||0));
+      }
 
       ui.wsList.innerHTML = "";
-      ui.wsEmpty.hidden = items.length !== 0;
+      ui.wsEmpty.classList.toggle("hidden", items.length !== 0);
+
+      const frag = document.createDocumentFragment();
 
       for (const ws of items){
         const badge = badgeForDays(ws.daysLeft);
@@ -971,33 +1013,48 @@
         title.className = "title";
         title.textContent = ws.name;
 
-        const b = document.createElement("span");
-        b.className = `badge ${badge.cls}`;
-        b.textContent = badge.text;
+        const bd = document.createElement("span");
+        bd.className = `badge ${badge.cls}`;
+        bd.textContent = badge.text;
 
         top.appendChild(title);
-        top.appendChild(b);
+        top.appendChild(bd);
 
         const meta = document.createElement("div");
         meta.className = "meta";
 
         const endLine = document.createElement("div");
-        endLine.innerHTML = `ينتهي في: <b>${formatDateAr(ws.endISO)}</b> — المتبقي: <b>${Math.max(ws.daysLeft, 0)}</b> يوم`;
+        endLine.textContent = `ينتهي في ${formatDateAr(ws.endISO)} - المتبقي ${Math.max(ws.daysLeft, 0)} يوم`;
         meta.appendChild(endLine);
 
         const linkLine = document.createElement("div");
-        linkLine.innerHTML = `🔗 <a href="${ws.workspaceUrl}" target="_blank" rel="noopener">فتح رابط المساحة</a>`;
+        const a1 = document.createElement("a");
+        a1.href = ws.workspaceUrl;
+        a1.target = "_blank";
+        a1.rel = "noopener";
+        a1.textContent = "فتح رابط المساحة";
+        linkLine.appendChild(a1);
         meta.appendChild(linkLine);
 
         const emailLine = document.createElement("div");
-        const mailto = `mailto:${ws.email}`;
-        emailLine.innerHTML = `📧 <a href="${mailto}" target="_blank" rel="noopener">إرسال رسالة</a> — <b>${ws.email}</b>`;
+        emailLine.textContent = `الايميل: ${ws.email}`;
         meta.appendChild(emailLine);
 
         if (ws.emailUrl && ws.emailUrl.trim()){
           const emailUrlLine = document.createElement("div");
-          emailUrlLine.innerHTML = `🔐 <a href="${ws.emailUrl}" target="_blank" rel="noopener">رابط تسجيل دخول الإيميل</a>`;
+          const a2 = document.createElement("a");
+          a2.href = ws.emailUrl;
+          a2.target = "_blank";
+          a2.rel = "noopener";
+          a2.textContent = "فتح رابط تسجيل دخول الايميل";
+          emailUrlLine.appendChild(a2);
           meta.appendChild(emailUrlLine);
+        }
+
+        if (ws.note && ws.note.trim()){
+          const noteLine = document.createElement("div");
+          noteLine.textContent = `ملاحظة: ${ws.note}`;
+          meta.appendChild(noteLine);
         }
 
         const progress = document.createElement("div");
@@ -1008,20 +1065,31 @@
         progress.appendChild(bar);
 
         const actions = document.createElement("div");
-        actions.className = "actions";
+        actions.className = "card-actions";
 
-        const btnCopyEmail = document.createElement("button");
-        btnCopyEmail.className = "btn";
-        btnCopyEmail.textContent = "📋 نسخ الإيميل";
-        btnCopyEmail.addEventListener("click", async () => {
-          const ok = await copyText(ws.email);
-          toast(ok ? "تم نسخ الإيميل ✅" : "تعذر النسخ (جرّب يدويًا).", ok ? "✅" : "⚠️");
+        const btnOpen = makeBtn("فتح", ICONS.open, "btn", () => {
+          window.open(ws.workspaceUrl, "_blank", "noopener");
         });
 
-        const btnEdit = document.createElement("button");
-        btnEdit.className = "btn";
-        btnEdit.textContent = "✏️ تعديل";
-        btnEdit.addEventListener("click", () => {
+        const btnCopyEmail = makeBtn("نسخ الايميل", ICONS.copy, "btn", async () => {
+          const ok = await copyText(ws.email);
+          toast(ok ? "تم نسخ الايميل" : "تعذر النسخ", ok ? "ok" : "bad");
+        });
+
+        const btnRenew = makeBtn("تجديد 30 يوم", ICONS.renew, "btn", () => {
+          const ok = confirm("تجديد هذه المساحة لمدة 30 يوم من اليوم؟");
+          if (!ok) return;
+          const i = state.workspaces.findIndex(x => x.id === ws.id);
+          if (i >= 0){
+            state.workspaces[i].startISO = toLocalISO(new Date());
+            scheduleSave();
+            renderWorkspaces();
+            checkExpiryAlerts(true);
+            toast("تم التجديد", "ok");
+          }
+        });
+
+        const btnEdit = makeBtn("تعديل", ICONS.edit, "btn", () => {
           editingWsId = ws.id;
           ui.wsName.value = ws.name;
           ui.wsUrl.value = ws.workspaceUrl;
@@ -1029,25 +1097,25 @@
           ui.wsEmail.value = ws.email;
           ui.wsStart.value = ws.startISO;
           ui.wsEnd.value = computeExpiry(ws.startISO);
-          ui.wsSubmit.textContent = "💾 حفظ التعديل";
-          ui.wsCancel.hidden = false;
-          toast("وضع التعديل: غيّر البيانات ثم اضغط حفظ.", "✏️");
+          ui.wsNote.value = ws.note || "";
+          ui.wsSubmit.querySelector("span:last-child").textContent = "حفظ";
+          ui.wsCancel.classList.remove("hidden");
+          toast("تم تفعيل وضع التعديل", "ok");
           window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-        const btnDel = document.createElement("button");
-        btnDel.className = "btn";
-        btnDel.textContent = "🗑️ حذف";
-        btnDel.addEventListener("click", () => {
-          const ok = confirm(`حذف مساحة: ${ws.name} ؟`);
+        const btnDel = makeBtn("حذف", ICONS.del, "btn danger", () => {
+          const ok = confirm("حذف هذه المساحة؟");
           if (!ok) return;
           state.workspaces = state.workspaces.filter(x => x.id !== ws.id);
-          persist();
+          scheduleSave();
           renderWorkspaces();
-          toast("تم الحذف.", "🗑️");
+          toast("تم الحذف", "ok");
         });
 
+        actions.appendChild(btnOpen);
         actions.appendChild(btnCopyEmail);
+        actions.appendChild(btnRenew);
         actions.appendChild(btnEdit);
         actions.appendChild(btnDel);
 
@@ -1056,23 +1124,38 @@
         card.appendChild(progress);
         card.appendChild(actions);
 
-        ui.wsList.appendChild(card);
+        frag.appendChild(card);
       }
+
+      ui.wsList.appendChild(frag);
+    }
+
+    function maskValue(v){
+      if (!v) return "********";
+      return "*".repeat(Math.min(Math.max(v.length, 8), 14));
     }
 
     function renderVault(){
       const term = (ui.vSearch.value || "").trim().toLowerCase();
+      const sort = ui.vSort.value;
 
-      const items = state.vault
+      let items = state.vault
         .filter(v => {
           const hay = `${v.service} ${v.email} ${v.note || ""}`.toLowerCase();
           if (term && !hay.includes(term)) return false;
           return true;
-        })
-        .sort((a,b) => a.service.localeCompare(b.service, "ar"));
+        });
+
+      if (sort === "newest"){
+        items.sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0));
+      }else{
+        items.sort((a,b) => a.service.localeCompare(b.service, "ar"));
+      }
 
       ui.vaultList.innerHTML = "";
-      ui.vaultEmpty.hidden = items.length !== 0;
+      ui.vaultEmpty.classList.toggle("hidden", items.length !== 0);
+
+      const frag = document.createDocumentFragment();
 
       for (const v of items){
         const card = document.createElement("div");
@@ -1085,85 +1168,168 @@
         title.className = "title";
         title.textContent = v.service;
 
-        const b = document.createElement("span");
-        b.className = "badge ok";
-        b.textContent = "جاهز للنسخ";
+        const bd = document.createElement("span");
+        bd.className = "badge ok";
+        bd.textContent = "جاهز";
 
         top.appendChild(title);
-        top.appendChild(b);
+        top.appendChild(bd);
 
         const meta = document.createElement("div");
         meta.className = "meta";
 
         const emailLine = document.createElement("div");
-        emailLine.innerHTML = `📧 الإيميل: <b>${v.email}</b>`;
+        emailLine.textContent = `الايميل: ${v.email}`;
         meta.appendChild(emailLine);
 
         if (v.note && v.note.trim()){
           const noteLine = document.createElement("div");
-          noteLine.innerHTML = `📝 ملاحظة: <b>${v.note}</b>`;
+          noteLine.textContent = `ملاحظة: ${v.note}`;
           meta.appendChild(noteLine);
         }
 
+        // Password blocks with reveal toggles
+        const pw1 = document.createElement("div");
+        pw1.className = "pw-row";
+        const pw1l = document.createElement("p");
+        pw1l.className = "pw-label";
+        pw1l.textContent = "كلمة سر الايميل";
+        const pw1v = document.createElement("p");
+        pw1v.className = "pw-value";
+        pw1v.textContent = maskValue(v.passEmail);
+        pw1v.dataset.real = v.passEmail || "";
+        pw1v.dataset.shown = "0";
+
+        const pw1Actions = document.createElement("div");
+        pw1Actions.style.display = "flex";
+        pw1Actions.style.gap = "8px";
+
+        const btnShow1 = makeBtn("عرض", ICONS.show, "btn", () => {
+          const shown = pw1v.dataset.shown === "1";
+          pw1v.textContent = shown ? maskValue(pw1v.dataset.real) : (pw1v.dataset.real || "");
+          pw1v.dataset.shown = shown ? "0" : "1";
+          btnShow1.querySelector(".icon").innerHTML = shown ? ICONS.show : ICONS.hide;
+          btnShow1.querySelector("span:last-child").textContent = shown ? "عرض" : "إخفاء";
+
+          if (!shown){
+            // auto-hide after 15s
+            setTimeout(() => {
+              if (pw1v.dataset.shown === "1"){
+                pw1v.textContent = maskValue(pw1v.dataset.real);
+                pw1v.dataset.shown = "0";
+                btnShow1.querySelector(".icon").innerHTML = ICONS.show;
+                btnShow1.querySelector("span:last-child").textContent = "عرض";
+              }
+            }, 15000);
+          }
+        });
+
+        const btnCopy1 = makeBtn("نسخ", ICONS.copy, "btn", async () => {
+          const ok = await copyText(v.passEmail || "");
+          toast(ok ? "تم نسخ كلمة السر" : "تعذر النسخ", ok ? "ok" : "bad");
+        });
+
+        pw1Actions.appendChild(btnShow1);
+        pw1Actions.appendChild(btnCopy1);
+
+        pw1.appendChild(pw1l);
+        pw1.appendChild(pw1v);
+        pw1.appendChild(pw1Actions);
+
+        const pw2 = document.createElement("div");
+        pw2.className = "pw-row";
+        const pw2l = document.createElement("p");
+        pw2l.className = "pw-label";
+        pw2l.textContent = "كلمة سر الخدمة";
+        const pw2v = document.createElement("p");
+        pw2v.className = "pw-value";
+        pw2v.textContent = maskValue(v.passService);
+        pw2v.dataset.real = v.passService || "";
+        pw2v.dataset.shown = "0";
+
+        const pw2Actions = document.createElement("div");
+        pw2Actions.style.display = "flex";
+        pw2Actions.style.gap = "8px";
+
+        const btnShow2 = makeBtn("عرض", ICONS.show, "btn", () => {
+          const shown = pw2v.dataset.shown === "1";
+          pw2v.textContent = shown ? maskValue(pw2v.dataset.real) : (pw2v.dataset.real || "");
+          pw2v.dataset.shown = shown ? "0" : "1";
+          btnShow2.querySelector(".icon").innerHTML = shown ? ICONS.show : ICONS.hide;
+          btnShow2.querySelector("span:last-child").textContent = shown ? "عرض" : "إخفاء";
+
+          if (!shown){
+            setTimeout(() => {
+              if (pw2v.dataset.shown === "1"){
+                pw2v.textContent = maskValue(pw2v.dataset.real);
+                pw2v.dataset.shown = "0";
+                btnShow2.querySelector(".icon").innerHTML = ICONS.show;
+                btnShow2.querySelector("span:last-child").textContent = "عرض";
+              }
+            }, 15000);
+          }
+        });
+
+        const btnCopy2 = makeBtn("نسخ", ICONS.copy, "btn", async () => {
+          const ok = await copyText(v.passService || "");
+          toast(ok ? "تم نسخ كلمة السر" : "تعذر النسخ", ok ? "ok" : "bad");
+        });
+
+        pw2Actions.appendChild(btnShow2);
+        pw2Actions.appendChild(btnCopy2);
+
+        pw2.appendChild(pw2l);
+        pw2.appendChild(pw2v);
+        pw2.appendChild(pw2Actions);
+
         const actions = document.createElement("div");
-        actions.className = "actions";
+        actions.className = "card-actions";
 
-        const mkCopyBtn = (label, value) => {
-          const btn = document.createElement("button");
-          btn.className = "btn";
-          btn.textContent = label;
-          btn.addEventListener("click", async () => {
-            const ok = await copyText(value);
-            toast(ok ? "تم النسخ ✅" : "تعذر النسخ.", ok ? "✅" : "⚠️");
-          });
-          return btn;
-        };
+        const btnCopyEmail = makeBtn("نسخ الايميل", ICONS.copy, "btn", async () => {
+          const ok = await copyText(v.email);
+          toast(ok ? "تم نسخ الايميل" : "تعذر النسخ", ok ? "ok" : "bad");
+        });
 
-        actions.appendChild(mkCopyBtn("📋 نسخ الإيميل", v.email));
-        actions.appendChild(mkCopyBtn("📋 نسخ كلمة سر الإيميل", v.passEmail));
-        actions.appendChild(mkCopyBtn("📋 نسخ كلمة سر الخدمة", v.passService));
-
-        const btnEdit = document.createElement("button");
-        btnEdit.className = "btn";
-        btnEdit.textContent = "✏️ تعديل";
-        btnEdit.addEventListener("click", () => {
+        const btnEdit = makeBtn("تعديل", ICONS.edit, "btn", () => {
           editingVaultId = v.id;
           ui.vService.value = v.service;
           ui.vEmail.value = v.email;
-          ui.vPassEmail.value = v.passEmail;
-          ui.vPassService.value = v.passService;
+          ui.vPassEmail.value = v.passEmail || "";
+          ui.vPassService.value = v.passService || "";
           ui.vNote.value = v.note || "";
-          ui.vaultSubmit.textContent = "💾 حفظ التعديل";
-          ui.vaultCancel.hidden = false;
+          ui.vaultSubmit.querySelector("span:last-child").textContent = "حفظ";
+          ui.vaultCancel.classList.remove("hidden");
           setTab("vault");
-          toast("وضع التعديل: غيّر ثم احفظ.", "✏️");
+          toast("تم تفعيل وضع التعديل", "ok");
           window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-        const btnDel = document.createElement("button");
-        btnDel.className = "btn";
-        btnDel.textContent = "🗑️ حذف";
-        btnDel.addEventListener("click", () => {
-          const ok = confirm(`حذف: ${v.service} ؟`);
+        const btnDel = makeBtn("حذف", ICONS.del, "btn danger", () => {
+          const ok = confirm("حذف هذا الحساب؟");
           if (!ok) return;
           state.vault = state.vault.filter(x => x.id !== v.id);
-          persist();
+          scheduleSave();
           renderVault();
-          toast("تم الحذف.", "🗑️");
+          toast("تم الحذف", "ok");
         });
 
+        actions.appendChild(btnCopyEmail);
         actions.appendChild(btnEdit);
         actions.appendChild(btnDel);
 
         card.appendChild(top);
         card.appendChild(meta);
+        card.appendChild(pw1);
+        card.appendChild(pw2);
         card.appendChild(actions);
 
-        ui.vaultList.appendChild(card);
+        frag.appendChild(card);
       }
+
+      ui.vaultList.appendChild(frag);
     }
 
-    function checkExpiryAlerts(){
+    function checkExpiryAlerts(force=false){
       const todayISO = toLocalISO(new Date());
       let triggered = 0;
 
@@ -1173,22 +1339,23 @@
 
         if (daysLeft === 1){
           const last = state.alerts[ws.id];
-          if (last !== todayISO){
+          if (force || last !== todayISO){
             state.alerts[ws.id] = todayISO;
             triggered++;
-            toast(`تنبيه: مساحة <b>${ws.name}</b> تنتهي <b>غداً</b>.`, "🔔");
+            toast(`تنبيه: مساحة "${ws.name}" تنتهي غدا`, "warn");
           }
         }
       }
 
-      if (triggered > 0) persist();
+      if (triggered > 0) scheduleSave();
     }
 
-    // ===== Events =====
+    // Tabs
     ui.tabs.forEach(btn => {
       btn.addEventListener("click", () => setTab(btn.dataset.tab));
     });
 
+    // Workspace date calc
     ui.wsStart.addEventListener("change", () => {
       ui.wsEnd.value = computeExpiry(ui.wsStart.value);
     });
@@ -1202,11 +1369,15 @@
         workspaceUrl: ui.wsUrl.value.trim(),
         emailUrl: ui.wsEmailUrl.value.trim(),
         email: ui.wsEmail.value.trim(),
-        startISO: ui.wsStart.value
+        startISO: ui.wsStart.value,
+        note: ui.wsNote.value.trim(),
+        createdAt: editingWsId
+          ? (state.workspaces.find(x => x.id === editingWsId)?.createdAt || Date.now())
+          : Date.now()
       };
 
       if (!obj.name || !obj.workspaceUrl || !obj.email || !obj.startISO){
-        toast("تأكد من تعبئة الحقول المطلوبة.", "⚠️");
+        toast("تأكد من تعبئة الحقول المطلوبة", "bad");
         return;
       }
 
@@ -1214,18 +1385,17 @@
         const i = state.workspaces.findIndex(x => x.id === editingWsId);
         if (i >= 0) state.workspaces[i] = obj;
         editingWsId = null;
-        ui.wsSubmit.textContent = "➕ إضافة";
-        ui.wsCancel.hidden = true;
-        toast("تم حفظ التعديل ✅", "✅");
+        ui.wsSubmit.querySelector("span:last-child").textContent = "إضافة";
+        ui.wsCancel.classList.add("hidden");
+        toast("تم حفظ التعديل", "ok");
       }else{
         state.workspaces.push(obj);
-        toast("تمت الإضافة ✅", "✅");
+        toast("تمت الإضافة", "ok");
       }
 
-      persist();
+      scheduleSave();
       ui.wsForm.reset();
 
-      // restore defaults
       ui.wsStart.value = toLocalISO(new Date());
       ui.wsEnd.value = computeExpiry(ui.wsStart.value);
 
@@ -1235,17 +1405,19 @@
 
     ui.wsCancel.addEventListener("click", () => {
       editingWsId = null;
-      ui.wsSubmit.textContent = "➕ إضافة";
-      ui.wsCancel.hidden = true;
+      ui.wsSubmit.querySelector("span:last-child").textContent = "إضافة";
+      ui.wsCancel.classList.add("hidden");
       ui.wsForm.reset();
       ui.wsStart.value = toLocalISO(new Date());
       ui.wsEnd.value = computeExpiry(ui.wsStart.value);
-      toast("تم إلغاء التعديل.", "↩️");
+      toast("تم إلغاء التعديل", "ok");
     });
 
-    ui.wsSearch.addEventListener("input", () => renderWorkspaces());
-    ui.wsFilter.addEventListener("change", () => renderWorkspaces());
+    ui.wsSearch.addEventListener("input", renderWorkspaces);
+    ui.wsFilter.addEventListener("change", renderWorkspaces);
+    ui.wsSort.addEventListener("change", renderWorkspaces);
 
+    // Vault
     ui.vaultForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
@@ -1255,11 +1427,14 @@
         email: ui.vEmail.value.trim(),
         passEmail: ui.vPassEmail.value,
         passService: ui.vPassService.value,
-        note: ui.vNote.value.trim()
+        note: ui.vNote.value.trim(),
+        createdAt: editingVaultId
+          ? (state.vault.find(x => x.id === editingVaultId)?.createdAt || Date.now())
+          : Date.now()
       };
 
       if (!obj.service || !obj.email || !obj.passEmail || !obj.passService){
-        toast("تأكد من تعبئة الحقول المطلوبة.", "⚠️");
+        toast("تأكد من تعبئة الحقول المطلوبة", "bad");
         return;
       }
 
@@ -1267,51 +1442,31 @@
         const i = state.vault.findIndex(x => x.id === editingVaultId);
         if (i >= 0) state.vault[i] = obj;
         editingVaultId = null;
-        ui.vaultSubmit.textContent = "➕ إضافة";
-        ui.vaultCancel.hidden = true;
-        toast("تم حفظ التعديل ✅", "✅");
+        ui.vaultSubmit.querySelector("span:last-child").textContent = "إضافة";
+        ui.vaultCancel.classList.add("hidden");
+        toast("تم حفظ التعديل", "ok");
       }else{
         state.vault.push(obj);
-        toast("تمت الإضافة ✅", "✅");
+        toast("تمت الإضافة", "ok");
       }
 
-      persist();
+      scheduleSave();
       ui.vaultForm.reset();
       renderVault();
     });
 
     ui.vaultCancel.addEventListener("click", () => {
       editingVaultId = null;
-      ui.vaultSubmit.textContent = "➕ إضافة";
-      ui.vaultCancel.hidden = true;
+      ui.vaultSubmit.querySelector("span:last-child").textContent = "إضافة";
+      ui.vaultCancel.classList.add("hidden");
       ui.vaultForm.reset();
-      toast("تم إلغاء التعديل.", "↩️");
+      toast("تم إلغاء التعديل", "ok");
     });
 
-    ui.vSearch.addEventListener("input", () => renderVault());
+    ui.vSearch.addEventListener("input", renderVault);
+    ui.vSort.addEventListener("change", renderVault);
 
-    // toggle show/hide + copy from form icons
-    document.addEventListener("click", async (e) => {
-      const t = e.target;
-
-      if (t && t.matches("[data-toggle]")){
-        const sel = t.getAttribute("data-toggle");
-        const input = $(sel);
-        if (!input) return;
-        input.type = (input.type === "password") ? "text" : "password";
-        toast(input.type === "text" ? "تم إظهار النص." : "تم إخفاء النص.", "👁️");
-      }
-
-      if (t && t.matches("[data-copy]")){
-        const sel = t.getAttribute("data-copy");
-        const input = $(sel);
-        if (!input) return;
-        const ok = await copyText(input.value);
-        toast(ok ? "تم النسخ ✅" : "تعذر النسخ.", ok ? "✅" : "⚠️");
-      }
-    });
-
-    // Export / Import
+    // Export
     ui.btnExport.addEventListener("click", () => {
       const raw = localStorage.getItem(STORAGE_KEY) || "";
       const blob = new Blob([raw], { type: "application/json" });
@@ -1322,167 +1477,90 @@
       a.click();
       a.remove();
       URL.revokeObjectURL(a.href);
-      toast("تم تصدير النسخة الاحتياطية.", "⬇️");
+      toast("تم تصدير النسخة الاحتياطية", "ok");
     });
 
+    // Import
     ui.importFile.addEventListener("change", async () => {
       const file = ui.importFile.files && ui.importFile.files[0];
       if (!file) return;
-
-      const text = await file.text();
       try{
-        JSON.parse(text); // just to validate
+        const text = await file.text();
+        const parsed = JSON.parse(text);
+        if (!parsed || !parsed.data){
+          toast("ملف غير صالح", "bad");
+          ui.importFile.value = "";
+          return;
+        }
         localStorage.setItem(STORAGE_KEY, text);
-        toast("تم الاستيراد. سيتم تحديث الصفحة.", "⬆️");
+        toast("تم الاستيراد وسيتم تحديث الصفحة", "ok");
         setTimeout(() => location.reload(), 600);
-      }catch(_){
-        toast("ملف غير صالح.", "⚠️");
+      }catch(e){
+        toast("فشل الاستيراد", "bad");
       }finally{
         ui.importFile.value = "";
       }
     });
 
-    // Lock / Unlock UI
-    function showModal(){
-      ui.modal.hidden = false;
-      ui.modalError.hidden = true;
-      ui.mp1.value = "";
-      ui.mp2.value = "";
-      ui.mp1.focus();
-    }
-    function hideModal(){ ui.modal.hidden = true; }
-    ui.modalCancel.addEventListener("click", hideModal);
-
-    function showLockOverlay(){
-      ui.lockOverlay.hidden = false;
-      ui.unlockError.hidden = true;
-      ui.unlockPassword.value = "";
-      ui.unlockPassword.focus();
-    }
-    function hideLockOverlay(){
-      ui.lockOverlay.hidden = true;
-      ui.unlockError.hidden = true;
-      ui.unlockPassword.value = "";
-    }
-
-    ui.btnLock.addEventListener("click", async () => {
-      // If encryption is on => turn it off (store plain)
-      if (encryption.enabled){
-        const ok = confirm("هل تريد فك القفل؟ سيتم حفظ البيانات بدون تشفير داخل المتصفح.");
-        if (!ok) return;
-
-        encryption.enabled = false;
-        encryption.key = null;
-        encryption.saltB64 = null;
-
-        updateLockButton();
-        await persist();
-        toast("تم فك القفل. (الحفظ الآن بدون تشفير)", "🔓");
-        return;
-      }
-
-      // Enable encryption
-      if (!crypto || !crypto.subtle){
-        toast("التشفير غير مدعوم في هذا المتصفح.", "⚠️");
-        return;
-      }
-      ui.modalTitle.textContent = "🔒 قفل البيانات";
-      ui.modalText.textContent = "اختر كلمة مرور رئيسية (8 أحرف أو أكثر). لا تنسها.";
-      showModal();
+    // Reset
+    ui.btnReset.addEventListener("click", () => {
+      const ok = confirm("هل تريد مسح كل البيانات؟");
+      if (!ok) return;
+      localStorage.removeItem(STORAGE_KEY);
+      state = defaultState();
+      editingWsId = null;
+      editingVaultId = null;
+      toast("تم مسح البيانات", "ok");
+      ui.wsForm.reset();
+      ui.vaultForm.reset();
+      ui.wsCancel.classList.add("hidden");
+      ui.vaultCancel.classList.add("hidden");
+      ui.wsSubmit.querySelector("span:last-child").textContent = "إضافة";
+      ui.vaultSubmit.querySelector("span:last-child").textContent = "إضافة";
+      ui.wsStart.value = toLocalISO(new Date());
+      ui.wsEnd.value = computeExpiry(ui.wsStart.value);
+      setTab("workspaces");
+      renderWorkspaces();
+      renderVault();
+      scheduleSave();
     });
 
-    ui.modalForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const p1 = ui.mp1.value;
-      const p2 = ui.mp2.value;
-      if (!p1 || p1.length < 8 || p1 !== p2){
-        ui.modalError.hidden = false;
-        return;
-      }
-
-      try{
-        const { key, saltB64 } = await deriveKey(p1);
-        encryption.enabled = true;
-        encryption.key = key;
-        encryption.saltB64 = saltB64;
-
-        updateLockButton();
-        await persist();
-        hideModal();
-        toast("تم قفل البيانات بنجاح ✅", "🔒");
-      }catch(err){
-        console.error(err);
-        toast("فشل تفعيل القفل.", "⚠️");
-      }
-    });
-
-    ui.unlockForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      ui.unlockError.hidden = true;
-      const pass = ui.unlockPassword.value;
-
-      try{
-        const { key } = await deriveKey(pass, lockedBlob.salt);
-        const data = await decryptJson(key, lockedBlob.iv, lockedBlob.cipher);
-
-        state = mergeDefaults(data);
-        encryption.enabled = true;
-        encryption.key = key;
-        encryption.saltB64 = lockedBlob.salt;
-
-        lockedBlob = null;
-        hideLockOverlay();
-
-        updateLockButton();
-        setTab(state.ui.activeTab || "workspaces");
-        renderWorkspaces();
-        renderVault();
-        checkExpiryAlerts();
-
-        toast("تم فتح البيانات ✅", "🔓");
-      }catch(err){
-        ui.unlockError.hidden = false;
-      }
-    });
-
-    // ===== Init =====
-    (async function init(){
+    function init(){
       // default dates
       ui.wsStart.value = toLocalISO(new Date());
       ui.wsEnd.value = computeExpiry(ui.wsStart.value);
 
-      // Load store
-      const raw = loadRaw();
-
-      if (raw && raw.mode === "enc"){
-        lockedBlob = raw;
-        showLockOverlay();
-        updateLockButton(); // shows "قفل" but locked screen anyway
-        return;
-      }
-
-      if (raw && raw.mode === "plain"){
-        state = mergeDefaults(raw.data);
-      }else if (raw && raw.data){
-        // fallback older shape
-        state = mergeDefaults(raw.data);
+      const raw = loadStore();
+      if (raw && raw.data){
+        state = {
+          ...defaultState(),
+          ...raw.data,
+          ui: { activeTab: (raw.data.ui && raw.data.ui.activeTab) ? raw.data.ui.activeTab : "workspaces" }
+        };
       }else{
         state = defaultState();
       }
 
-      updateLockButton();
       setTab(state.ui.activeTab || "workspaces");
-
       renderWorkspaces();
       renderVault();
       checkExpiryAlerts();
 
-      // refresh countdown & alerts periodically (useful إذا بقى الموقع مفتوح)
+      // periodic refresh
       setInterval(() => {
         renderWorkspaces();
         checkExpiryAlerts();
       }, 10 * 60 * 1000);
-    })();
+
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden){
+          renderWorkspaces();
+          checkExpiryAlerts();
+        }
+      });
+    }
+
+    init();
   </script>
 </body>
 </html>
